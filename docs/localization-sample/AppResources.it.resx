@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="AppName" xml:space="preserve">
+    <value>BrickCollection</value>
+  </data>
+  <data name="Login_Title" xml:space="preserve">
+    <value>Accedi a Brickset</value>
+  </data>
+  <data name="Login_Username" xml:space="preserve">
+    <value>Nome utente</value>
+  </data>
+  <data name="Login_Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="Login_Button" xml:space="preserve">
+    <value>Accedi</value>
+  </data>
+  <data name="Collection_Title" xml:space="preserve">
+    <value>La Mia Collezione</value>
+  </data>
+  <data name="Stats_TotalSets" xml:space="preserve">
+    <value>Totale Set</value>
+  </data>
+  <data name="Stats_TotalPieces" xml:space="preserve">
+    <value>Totale Pezzi</value>
+  </data>
+</root>

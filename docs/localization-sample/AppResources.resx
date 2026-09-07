@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- This is the DEFAULT resource file (English). Copies with .it, .es, .fr, .de
+       suffixes provide translations, e.g. AppResources.it.resx -->
+  <data name="AppName" xml:space="preserve">
+    <value>BrickCollection</value>
+  </data>
+  <data name="Login_Title" xml:space="preserve">
+    <value>Sign in to Brickset</value>
+  </data>
+  <data name="Login_Username" xml:space="preserve">
+    <value>Username</value>
+  </data>
+  <data name="Login_Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="Login_Button" xml:space="preserve">
+    <value>Sign In</value>
+  </data>
+  <data name="Collection_Title" xml:space="preserve">
+    <value>My Collection</value>
+  </data>
+  <data name="Stats_TotalSets" xml:space="preserve">
+    <value>Total Sets</value>
+  </data>
+  <data name="Stats_TotalPieces" xml:space="preserve">
+    <value>Total Pieces</value>
+  </data>
+</root>
