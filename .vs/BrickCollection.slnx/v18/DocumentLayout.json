@@ -3,16 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\Laboratorio\\Documents\\GitHub\\BrickCollection\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{DFDB7648-08BA-7B41-20B8-AC123582213C}|src\\BrickCollection\\BrickCollection.csproj|c:\\users\\laboratorio\\documents\\github\\brickcollection\\src\\brickcollection\\secrets.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DFDB7648-08BA-7B41-20B8-AC123582213C}|src\\BrickCollection\\BrickCollection.csproj|solutionrelative:src\\brickcollection\\secrets.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DFDB7648-08BA-7B41-20B8-AC123582213C}|src\\BrickCollection\\BrickCollection.csproj|c:\\users\\laboratorio\\documents\\github\\brickcollection\\src\\brickcollection\\mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DFDB7648-08BA-7B41-20B8-AC123582213C}|src\\BrickCollection\\BrickCollection.csproj|solutionrelative:src\\brickcollection\\mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{DFDB7648-08BA-7B41-20B8-AC123582213C}|src\\BrickCollection\\BrickCollection.csproj|c:\\users\\laboratorio\\documents\\github\\brickcollection\\src\\brickcollection\\services\\bricksetauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DFDB7648-08BA-7B41-20B8-AC123582213C}|src\\BrickCollection\\BrickCollection.csproj|solutionrelative:src\\brickcollection\\services\\bricksetauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DFDB7648-08BA-7B41-20B8-AC123582213C}|src\\BrickCollection\\BrickCollection.csproj|c:\\users\\laboratorio\\documents\\github\\brickcollection\\src\\brickcollection\\brickcollection.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{DFDB7648-08BA-7B41-20B8-AC123582213C}|src\\BrickCollection\\BrickCollection.csproj|solutionrelative:src\\brickcollection\\brickcollection.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,47 +18,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 5,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Secrets.cs",
-              "DocumentMoniker": "C:\\Users\\Laboratorio\\Documents\\GitHub\\BrickCollection\\src\\BrickCollection\\Secrets.cs",
-              "RelativeDocumentMoniker": "src\\BrickCollection\\Secrets.cs",
-              "ToolTip": "C:\\Users\\Laboratorio\\Documents\\GitHub\\BrickCollection\\src\\BrickCollection\\Secrets.cs",
-              "RelativeToolTip": "src\\BrickCollection\\Secrets.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-08T08:32:35.689Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "BricksetAuthService.cs",
-              "DocumentMoniker": "C:\\Users\\Laboratorio\\Documents\\GitHub\\BrickCollection\\src\\BrickCollection\\Services\\BricksetAuthService.cs",
-              "RelativeDocumentMoniker": "src\\BrickCollection\\Services\\BricksetAuthService.cs",
-              "ToolTip": "C:\\Users\\Laboratorio\\Documents\\GitHub\\BrickCollection\\src\\BrickCollection\\Services\\BricksetAuthService.cs",
-              "RelativeToolTip": "src\\BrickCollection\\Services\\BricksetAuthService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-08T08:30:56.435Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "BrickCollection",
-              "DocumentMoniker": "C:\\Users\\Laboratorio\\Documents\\GitHub\\BrickCollection\\src\\BrickCollection\\BrickCollection.csproj",
-              "RelativeDocumentMoniker": "src\\BrickCollection\\BrickCollection.csproj",
-              "ToolTip": "C:\\Users\\Laboratorio\\Documents\\GitHub\\BrickCollection\\src\\BrickCollection\\BrickCollection.csproj",
-              "RelativeToolTip": "src\\BrickCollection\\BrickCollection.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAUwBEAAAAGAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-09-08T08:09:34.841Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{004be353-6879-467c-9d1e-9ac23cdf6d49}"
@@ -82,6 +39,32 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MainPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Laboratorio\\Documents\\GitHub\\BrickCollection\\src\\BrickCollection\\MainPage.xaml.cs",
+              "RelativeDocumentMoniker": "src\\BrickCollection\\MainPage.xaml.cs",
+              "ToolTip": "C:\\Users\\Laboratorio\\Documents\\GitHub\\BrickCollection\\src\\BrickCollection\\MainPage.xaml.cs",
+              "RelativeToolTip": "src\\BrickCollection\\MainPage.xaml.cs",
+              "ViewState": "AgIAACAAAAAAAAAAAADgvyYAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-08T10:40:34.939Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "BricksetAuthService.cs",
+              "DocumentMoniker": "C:\\Users\\Laboratorio\\Documents\\GitHub\\BrickCollection\\src\\BrickCollection\\Services\\BricksetAuthService.cs",
+              "RelativeDocumentMoniker": "src\\BrickCollection\\Services\\BricksetAuthService.cs",
+              "ToolTip": "C:\\Users\\Laboratorio\\Documents\\GitHub\\BrickCollection\\src\\BrickCollection\\Services\\BricksetAuthService.cs",
+              "RelativeToolTip": "src\\BrickCollection\\Services\\BricksetAuthService.cs",
+              "ViewState": "AgIAACoAAAAAAAAAAADwvzIAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-08T08:30:56.435Z",
+              "EditorCaption": ""
             }
           ]
         }

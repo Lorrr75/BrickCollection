@@ -1,4 +1,4 @@
-<api type="debug" assembly-name="BrickCollection" mvid="47c57394324647f39abed4990534fa3b">
+<api type="debug" assembly-name="BrickCollection" mvid="27c270885b4b4d0d8da928b6ff0d1859">
   <java-to-managed>
     <entry java-name="crc642cb7ebf4fccea096/MainActivity" managed-name="BrickCollection.MainActivity, BrickCollection" managed-type-token-id="33554442" />
     <entry java-name="crc642cb7ebf4fccea096/MainApplication" managed-name="BrickCollection.MainApplication, BrickCollection" managed-type-token-id="33554443" />

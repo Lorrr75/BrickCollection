@@ -1,4 +1,6 @@
-﻿namespace BrickCollection;
+﻿using BrickCollection.Services;
+
+namespace BrickCollection;
 
 public partial class MainPage : ContentPage
 {
@@ -7,6 +9,7 @@ public partial class MainPage : ContentPage
 	public MainPage()
 	{
 		InitializeComponent();
+		TestBricksetLogin();
 	}
 
 	private void OnCounterClicked(object? sender, EventArgs e)
@@ -20,4 +23,19 @@ public partial class MainPage : ContentPage
 
 		SemanticScreenReader.Announce(CounterBtn.Text);
 	}
+
+	private async void TestBricksetLogin()
+	{
+		var authService = new BricksetAuthService(new HttpClient());
+		var result = await authService.LoginAsync(Secrets.BricksetApiKey, Secrets.BricksetUsername, Secrets.BricksetPassword);
+		if (result.Success)
+		{
+			System.Diagnostics.Debug.WriteLine($"[BrickCollection] Login OK. Hash: {result.UserHash}");
+        }
+		else
+		{
+			System.Diagnostics.Debug.WriteLine($"[BrickCollection] Login FALLITO: {result.ErrorMessage}");
+		}
+    }
+
 }
