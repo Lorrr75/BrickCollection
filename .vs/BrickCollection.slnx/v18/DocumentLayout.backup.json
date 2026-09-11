@@ -3,12 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\Laboratorio\\Documents\\GitHub\\BrickCollection\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{DFDB7648-08BA-7B41-20B8-AC123582213C}|src\\BrickCollection\\BrickCollection.csproj|c:\\users\\laboratorio\\documents\\github\\brickcollection\\src\\brickcollection\\mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DFDB7648-08BA-7B41-20B8-AC123582213C}|src\\BrickCollection\\BrickCollection.csproj|solutionrelative:src\\brickcollection\\mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{DFDB7648-08BA-7B41-20B8-AC123582213C}|src\\BrickCollection\\BrickCollection.csproj|c:\\users\\laboratorio\\documents\\github\\brickcollection\\src\\brickcollection\\services\\bricksetauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DFDB7648-08BA-7B41-20B8-AC123582213C}|src\\BrickCollection\\BrickCollection.csproj|solutionrelative:src\\brickcollection\\services\\bricksetauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DFDB7648-08BA-7B41-20B8-AC123582213C}|src\\BrickCollection\\BrickCollection.csproj|c:\\users\\laboratorio\\documents\\github\\brickcollection\\src\\brickcollection\\mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DFDB7648-08BA-7B41-20B8-AC123582213C}|src\\BrickCollection\\BrickCollection.csproj|solutionrelative:src\\brickcollection\\mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DFDB7648-08BA-7B41-20B8-AC123582213C}|src\\BrickCollection\\BrickCollection.csproj|c:\\users\\laboratorio\\documents\\github\\brickcollection\\src\\brickcollection\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{DFDB7648-08BA-7B41-20B8-AC123582213C}|src\\BrickCollection\\BrickCollection.csproj|solutionrelative:src\\brickcollection\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DFDB7648-08BA-7B41-20B8-AC123582213C}|src\\BrickCollection\\BrickCollection.csproj|c:\\users\\laboratorio\\documents\\github\\brickcollection\\src\\brickcollection\\secrets.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DFDB7648-08BA-7B41-20B8-AC123582213C}|src\\BrickCollection\\BrickCollection.csproj|solutionrelative:src\\brickcollection\\secrets.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
@@ -42,26 +50,50 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
+              "Title": "MainPage.xaml",
+              "DocumentMoniker": "C:\\Users\\Laboratorio\\Documents\\GitHub\\BrickCollection\\src\\BrickCollection\\MainPage.xaml",
+              "RelativeDocumentMoniker": "src\\BrickCollection\\MainPage.xaml",
+              "ToolTip": "C:\\Users\\Laboratorio\\Documents\\GitHub\\BrickCollection\\src\\BrickCollection\\MainPage.xaml",
+              "RelativeToolTip": "src\\BrickCollection\\MainPage.xaml",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAawB4AAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-09-10T10:09:59.744Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Secrets.cs",
+              "DocumentMoniker": "C:\\Users\\Laboratorio\\Documents\\GitHub\\BrickCollection\\src\\BrickCollection\\Secrets.cs",
+              "RelativeDocumentMoniker": "src\\BrickCollection\\Secrets.cs",
+              "ToolTip": "C:\\Users\\Laboratorio\\Documents\\GitHub\\BrickCollection\\src\\BrickCollection\\Secrets.cs",
+              "RelativeToolTip": "src\\BrickCollection\\Secrets.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-10T10:09:41.625Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "MainPage.xaml.cs",
               "DocumentMoniker": "C:\\Users\\Laboratorio\\Documents\\GitHub\\BrickCollection\\src\\BrickCollection\\MainPage.xaml.cs",
               "RelativeDocumentMoniker": "src\\BrickCollection\\MainPage.xaml.cs",
               "ToolTip": "C:\\Users\\Laboratorio\\Documents\\GitHub\\BrickCollection\\src\\BrickCollection\\MainPage.xaml.cs",
               "RelativeToolTip": "src\\BrickCollection\\MainPage.xaml.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAqwB8AAAADAAAAAAAAAA==",
+              "ViewState": "AgIAACUAAAAAAAAAAAAlwDcAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-09-08T10:40:34.939Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "BricksetAuthService.cs",
               "DocumentMoniker": "C:\\Users\\Laboratorio\\Documents\\GitHub\\BrickCollection\\src\\BrickCollection\\Services\\BricksetAuthService.cs",
               "RelativeDocumentMoniker": "src\\BrickCollection\\Services\\BricksetAuthService.cs",
               "ToolTip": "C:\\Users\\Laboratorio\\Documents\\GitHub\\BrickCollection\\src\\BrickCollection\\Services\\BricksetAuthService.cs",
               "RelativeToolTip": "src\\BrickCollection\\Services\\BricksetAuthService.cs",
-              "ViewState": "AgIAACkAAAAAAAAAAAAwwDYAAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAAFcAAAAAAAAAAAAiwGIAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-09-08T08:30:56.435Z",
               "EditorCaption": ""

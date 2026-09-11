@@ -1,10 +1,10 @@
-<api type="debug" assembly-name="BrickCollection" mvid="27c270885b4b4d0d8da928b6ff0d1859">
+<api type="debug" assembly-name="BrickCollection" mvid="8f86d7b0552f44c390568ced5994613f">
   <java-to-managed>
-    <entry java-name="crc642cb7ebf4fccea096/MainActivity" managed-name="BrickCollection.MainActivity, BrickCollection" managed-type-token-id="33554442" />
-    <entry java-name="crc642cb7ebf4fccea096/MainApplication" managed-name="BrickCollection.MainApplication, BrickCollection" managed-type-token-id="33554443" />
+    <entry java-name="crc642cb7ebf4fccea096/MainActivity" managed-name="BrickCollection.MainActivity, BrickCollection" managed-type-token-id="33554443" />
+    <entry java-name="crc642cb7ebf4fccea096/MainApplication" managed-name="BrickCollection.MainApplication, BrickCollection" managed-type-token-id="33554444" />
   </java-to-managed>
   <managed-to-java>
-    <entry java-name="crc642cb7ebf4fccea096/MainActivity" managed-name="BrickCollection.MainActivity, BrickCollection" managed-type-token-id="33554442" />
-    <entry java-name="crc642cb7ebf4fccea096/MainApplication" managed-name="BrickCollection.MainApplication, BrickCollection" managed-type-token-id="33554443" />
+    <entry java-name="crc642cb7ebf4fccea096/MainActivity" managed-name="BrickCollection.MainActivity, BrickCollection" managed-type-token-id="33554443" />
+    <entry java-name="crc642cb7ebf4fccea096/MainApplication" managed-name="BrickCollection.MainApplication, BrickCollection" managed-type-token-id="33554444" />
   </managed-to-java>
 </api>

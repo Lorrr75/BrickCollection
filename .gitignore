@@ -1,2 +1,6 @@
 Secrets.cs
 **/Secrets.cs
+
+src/BrickCollection/bin/
+
+src/BrickCollection/obj/
