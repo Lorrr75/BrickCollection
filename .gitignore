@@ -1,6 +1,47 @@
+# Visual Studio / .NET
+.vs/
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# .NET MAUI / Android
+*.apk
+*.aab
+*.keystore
+*.jks
+android/.gradle/
+android/local.properties
+
+# Local secrets - NEVER commit these
 Secrets.cs
 **/Secrets.cs
+appsettings.local.json
+**/appsettings.local.json
+*.pfx
 
-src/BrickCollection/bin/
+# SQLite local databases (do not version user data)
+*.db
+*.db3
+*.sqlite
 
-src/BrickCollection/obj/
+# OS files
+.DS_Store
+Thumbs.db
+
+# Rider / VS Code
+.idea/
+.vscode/
+*.swp
+
+# NuGet
+packages/
+*.nupkg
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/

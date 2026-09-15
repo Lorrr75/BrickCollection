@@ -40,7 +40,7 @@ A personal LEGO® collection manager for Android, built with .NET MAUI, that con
    git clone https://github.com/<your-username>/BrickCollection.git
    ```
 2. Open `BrickCollection.sln` in Visual Studio
-3. Add your Brickset API key (see [Configuration](docs/CONFIGURATION.md))
+3. Add your Brickset credentials (see [Configuration](docs/CONFIGURATION.md))
 4. Set the target to an Android emulator or device
 5. Build and run
 
@@ -48,19 +48,13 @@ A personal LEGO® collection manager for Android, built with .NET MAUI, that con
 
 See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for details on the app structure, data flow, and design decisions.
 
+## API Integration Notes
+
+See [docs/API_INTEGRATION.md](docs/API_INTEGRATION.md) for specifics learned while integrating the Brickset API (endpoints used, response shapes, rate limit behavior).
+
 ## Roadmap
 
-Development follows an incremental, step-by-step approach:
-
-1. Authentication (Brickset login + user hash)
-2. Collection fetch (REST + JSON parsing)
-3. List UI (owned/wanted sets)
-4. Set detail view + basic statistics
-5. Local SQLite caching
-6. Write operations (update owned/wanted status)
-7. Advanced statistics & charts
-
-See [docs/ROADMAP.md](docs/ROADMAP.md) for the full breakdown.
+Development follows an incremental, step-by-step approach. See [docs/ROADMAP.md](docs/ROADMAP.md) for current progress.
 
 ## Contributing
 

@@ -6,38 +6,58 @@
 
 ## English
 
-### Brickset API Key
+### Brickset Credentials (local development)
+
+The app needs three secrets to talk to Brickset: your API key, and your Brickset username/password (used once to obtain a session hash).
+
+> **Note**: earlier drafts of this doc described an `appsettings.local.json` approach. The actual implementation uses a simpler git-ignored C# file instead — updated below.
 
 1. Request a free API key at https://brickset.com/tools/webservices/requestkey
-2. **Never commit your API key to the repository.** Store it in a local, git-ignored file:
-   - Create `src/BrickCollection/appsettings.local.json` (already excluded via `.gitignore`)
-   - Add:
-     ```json
-     {
-       "BricksetApiKey": "YOUR_KEY_HERE"
-     }
-     ```
-3. The app reads this value at startup; if missing, authentication calls will fail with a clear error message
+2. In the project root (`src/BrickCollection/`), create a file named `Secrets.cs`:
+   ```csharp
+   namespace BrickCollection;
+
+   internal static class Secrets
+   {
+       public const string BricksetApiKey = "YOUR_API_KEY_HERE";
+       public const string BricksetUsername = "YOUR_USERNAME_HERE";
+       public const string BricksetPassword = "YOUR_PASSWORD_HERE";
+   }
+   ```
+3. **This file is excluded via `.gitignore`** — verify `Secrets.cs` is listed there before your first commit involving it
+4. `MainPage.xaml.cs` reads these constants to call `BricksetAuthService.LoginAsync(...)`
+
+This is a pragmatic approach for a single-user personal app in early development. If the app is ever distributed to other users, this should be replaced with a proper per-user login flow using `SecureStorage` instead of compile-time constants (planned refactor, not yet scheduled).
 
 ### Rate Limits
 
-The Brickset API limits individual API keys to 100 calls/day for `getSets`. The app's local SQLite cache is designed to minimize calls — avoid disabling or bypassing the cache during development/testing.
+The Brickset API limits individual API keys to 100 calls/day, but **only calls to `getSets` count against this quota** — `login` and `getCollection` do not. The app fetches the full collection in a single `getSets` call (`pageSize:500`) rather than paginating, to keep usage minimal.
 
 ## Italiano
 
-### API Key Brickset
+### Credenziali Brickset (sviluppo locale)
+
+L'app ha bisogno di tre segreti per comunicare con Brickset: la tua API key, e username/password Brickset (usati una volta per ottenere uno hash di sessione).
+
+> **Nota**: versioni precedenti di questo documento descrivevano un approccio con `appsettings.local.json`. L'implementazione reale usa invece un file C# più semplice, escluso da git — aggiornato di seguito.
 
 1. Richiedi una API key gratuita su https://brickset.com/tools/webservices/requestkey
-2. **Non versionare mai la tua API key nel repository.** Salvala in un file locale escluso da git:
-   - Crea `src/BrickCollection/appsettings.local.json` (già escluso via `.gitignore`)
-   - Aggiungi:
-     ```json
-     {
-       "BricksetApiKey": "LA_TUA_CHIAVE_QUI"
-     }
-     ```
-3. L'app legge questo valore all'avvio; se mancante, le chiamate di autenticazione falliranno con un messaggio d'errore chiaro
+2. Nella root del progetto (`src/BrickCollection/`), crea un file chiamato `Secrets.cs`:
+   ```csharp
+   namespace BrickCollection;
+
+   internal static class Secrets
+   {
+       public const string BricksetApiKey = "LA_TUA_API_KEY_QUI";
+       public const string BricksetUsername = "IL_TUO_USERNAME_QUI";
+       public const string BricksetPassword = "LA_TUA_PASSWORD_QUI";
+   }
+   ```
+3. **Questo file è escluso tramite `.gitignore`** — verifica che `Secrets.cs` sia elencato lì prima del tuo primo commit che lo coinvolge
+4. `MainPage.xaml.cs` legge queste costanti per chiamare `BricksetAuthService.LoginAsync(...)`
+
+Questo è un approccio pragmatico per un'app personale mono-utente in fase iniziale di sviluppo. Se l'app venisse mai distribuita ad altri utenti, andrebbe sostituito con un vero flusso di login per-utente usando `SecureStorage` invece di costanti compilate (refactor pianificato, non ancora programmato).
 
 ### Limiti di Chiamate
 
-L'API Brickset limita le API key individuali a 100 chiamate/giorno per `getSets`. La cache SQLite locale dell'app è pensata per minimizzare le chiamate — evita di disabilitarla o bypassarla durante sviluppo/test.
+L'API Brickset limita le API key individuali a 100 chiamate/giorno, ma **solo le chiamate a `getSets` consumano questa quota** — `login` e `getCollection` no. L'app scarica l'intera collezione in un'unica chiamata `getSets` (`pageSize:500`) invece di paginare, per minimizzare il consumo.

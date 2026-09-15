@@ -28,7 +28,7 @@ Un'app personale per la gestione della propria collezione LEGO® su Android, svi
 
 ### Prerequisiti
 
-- Visual Studio 2026 con il carico di lavoro **.NET Multi-platform App UI development**
+- Visual Studio 2022/2026 con il carico di lavoro **.NET Multi-platform App UI development**
 - Android SDK (API 34+) ed emulatore o dispositivo fisico
 - Una [API key Brickset](https://brickset.com/tools/webservices/requestkey) gratuita
 - Un account Brickset (per autenticazione e accesso alla collezione personale)
@@ -40,7 +40,7 @@ Un'app personale per la gestione della propria collezione LEGO® su Android, svi
    git clone https://github.com/<tuo-username>/BrickCollection.git
    ```
 2. Apri `BrickCollection.sln` in Visual Studio
-3. Aggiungi la tua API key Brickset (vedi [Configurazione](docs/CONFIGURATION.md))
+3. Aggiungi le tue credenziali Brickset (vedi [Configurazione](docs/CONFIGURATION.md))
 4. Imposta il target su un emulatore o dispositivo Android
 5. Compila ed esegui
 
@@ -48,19 +48,13 @@ Un'app personale per la gestione della propria collezione LEGO® su Android, svi
 
 Vedi [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) per dettagli sulla struttura dell'app, flusso dati e decisioni di design.
 
+## Note sull'Integrazione API
+
+Vedi [docs/API_INTEGRATION.md](docs/API_INTEGRATION.md) per i dettagli emersi durante l'integrazione con l'API Brickset (endpoint usati, formato risposte, comportamento dei limiti di chiamata).
+
 ## Roadmap
 
-Lo sviluppo segue un approccio incrementale, passo dopo passo:
-
-1. Autenticazione (login Brickset + user hash)
-2. Fetch della collezione (REST + parsing JSON)
-3. UI lista (set posseduti/desiderati)
-4. Vista dettaglio set + statistiche base
-5. Cache locale SQLite
-6. Operazioni di scrittura (aggiornamento stato posseduto/desiderato)
-7. Statistiche avanzate e grafici
-
-Vedi [docs/ROADMAP.md](docs/ROADMAP.md) per la suddivisione completa.
+Lo sviluppo segue un approccio incrementale, passo dopo passo. Vedi [docs/ROADMAP.md](docs/ROADMAP.md) per lo stato di avanzamento attuale.
 
 ## Contribuire
 

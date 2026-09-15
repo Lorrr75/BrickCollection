@@ -1,58 +1,39 @@
-﻿using BrickCollection.Services;
-//using BrickCollection.Models;
+﻿using BrickCollection.Models;
+using BrickCollection.Services;
 namespace BrickCollection;
 
 public partial class MainPage : ContentPage
 {
-	int count = 0;
-
+	
 	public MainPage()
 	{
-////		InitializeComponent();
-		TestBricksetLogin();
+		InitializeComponent();
+        LoadCollectionAsync();
 	}
 
-	private void OnCounterClicked(object? sender, EventArgs e)
-	{
-//		count++;
-
-//		if (count == 1)
-//			CounterBtn.Text = $"Clicked {count} time";
-//		else
-//			CounterBtn.Text = $"Clicked {count} times";
-
-//		SemanticScreenReader.Announce(CounterBtn.Text);
-	}
-
-	private async void TestBricksetLogin()
+	private async void LoadCollectionAsync()
 	{
 		var authService = new BricksetAuthService(new HttpClient());
 		var loginResult = await authService.LoginAsync(Secrets.BricksetApiKey,
 													   Secrets.BricksetUsername,
-													   Secrets.BricksetPassword);	
-
+													   Secrets.BricksetPassword);
 		if (!loginResult.Success)
 		{
 			System.Diagnostics.Debug.WriteLine($"[BrickCollection] Login FALLITO: {loginResult.ErrorMessage}");
 			return;
-        }
+		}
 
-        System.Diagnostics.Debug.WriteLine($"[BrickCollection] Login OK. Hash: {loginResult.UserHash}");
+		var setsResult = await authService.GetOwnedSetsAsync(Secrets.BricksetApiKey, loginResult.UserHash);
 
-		var setsResults = await authService.GetOwnedSetsAsync(Secrets.BricksetApiKey, loginResult.UserHash!);
-    
-		if (setsResults.Success)
+		if (setsResult.Success)
 		{
-            System.Diagnostics.Debug.WriteLine($"[BrickCollection] Trovati {setsResults.TotalMatches} set posseduti.");
-			foreach (var set in setsResults.Sets.Take(5))
-			{
-				System.Diagnostics.Debug.WriteLine($"  - {set.Number} {set.Name} ({set.Year}), {set.Pieces} pezzi");
-            }
-        }
+			SetsCollectionView.ItemsSource = setsResult.Sets;
+			StatusLabel.Text = $"{setsResult.Sets.Count} set caricati (totale API: {setsResult.TotalMatches})";
+		}
 		else
 		{
-            System.Diagnostics.Debug.WriteLine($"[BrickCollection] Fetch FALLITO: {setsResults.ErrorMessage}");
-        }
-    }
-
+			System.Diagnostics.Debug.WriteLine($"[BrickCollection] Errore nel recupero dei set: {setsResult.ErrorMessage}");
+		}
+	}
 }
+
