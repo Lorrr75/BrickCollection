@@ -26,7 +26,8 @@ Practical findings from integrating the [Brickset REST API v3](https://brickset.
 
 The 100 calls/day limit applies **only to `getSets`**. `login` and the newer `getCollection` method (added Jan 2026) do not count against it. This means:
 - Fetching the full collection with one `getSets` call per session is cheap relative to the limit
-- `getCollection` (lighter payload: setID + owned/wanted/qty only, no name/image/theme) could be used for frequent "did anything change?" checks without touching the quota — not yet implemented, potential future optimization for Step 5 (caching)
+- `getCollection` (lighter payload: setID + owned/wanted/qty only, no name/image/theme) could be used for frequent "did anything change?" checks without touching the quota — not yet implemented, potential future optimization
+- As of Step 5, the app caches results locally (SQLite) and only calls `getSets` when the user explicitly taps "Refresh", so real-world consumption is minimal regardless
 
 ### JSON deserialization notes
 
@@ -54,7 +55,8 @@ Riscontri pratici emersi integrando le [Brickset REST API v3](https://brickset.c
 
 Il limite di 100 chiamate/giorno si applica **solo a `getSets`**. `login` e il più recente metodo `getCollection` (aggiunto a gennaio 2026) non consumano la quota. Questo significa:
 - Scaricare l'intera collezione con una chiamata `getSets` per sessione è economico rispetto al limite
-- `getCollection` (payload più leggero: solo setID + owned/wanted/quantità, niente nome/immagine/tema) potrebbe essere usato per controlli frequenti "è cambiato qualcosa?" senza toccare la quota — non ancora implementato, possibile ottimizzazione futura per lo Step 5 (cache)
+- `getCollection` (payload più leggero: solo setID + owned/wanted/quantità, niente nome/immagine/tema) potrebbe essere usato per controlli frequenti "è cambiato qualcosa?" senza toccare la quota — non ancora implementato, possibile ottimizzazione futura
+- Dallo Step 5, l'app mette in cache i risultati localmente (SQLite) e chiama `getSets` solo quando l'utente tocca esplicitamente "Aggiorna", quindi il consumo reale è minimo in ogni caso
 
 ### Note sulla deserializzazione JSON
 

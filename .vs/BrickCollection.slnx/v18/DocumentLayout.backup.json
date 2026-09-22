@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\Laboratorio\\Documents\\GitHub\\BrickCollection\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{DFDB7648-08BA-7B41-20B8-AC123582213C}|src\\BrickCollection\\BrickCollection.csproj|c:\\users\\laboratorio\\documents\\github\\brickcollection\\src\\brickcollection\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DFDB7648-08BA-7B41-20B8-AC123582213C}|src\\BrickCollection\\BrickCollection.csproj|solutionrelative:src\\brickcollection\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{DFDB7648-08BA-7B41-20B8-AC123582213C}|src\\BrickCollection\\BrickCollection.csproj|c:\\users\\laboratorio\\documents\\github\\brickcollection\\src\\brickcollection\\mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DFDB7648-08BA-7B41-20B8-AC123582213C}|src\\BrickCollection\\BrickCollection.csproj|solutionrelative:src\\brickcollection\\mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DFDB7648-08BA-7B41-20B8-AC123582213C}|src\\BrickCollection\\BrickCollection.csproj|c:\\users\\laboratorio\\documents\\github\\brickcollection\\src\\brickcollection\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{DFDB7648-08BA-7B41-20B8-AC123582213C}|src\\BrickCollection\\BrickCollection.csproj|solutionrelative:src\\brickcollection\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{DFDB7648-08BA-7B41-20B8-AC123582213C}|src\\BrickCollection\\BrickCollection.csproj|c:\\users\\laboratorio\\documents\\github\\brickcollection\\src\\brickcollection\\services\\cacheservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DFDB7648-08BA-7B41-20B8-AC123582213C}|src\\BrickCollection\\BrickCollection.csproj|solutionrelative:src\\brickcollection\\services\\cacheservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -42,29 +46,40 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "MainPage.xaml",
-              "DocumentMoniker": "C:\\Users\\Laboratorio\\Documents\\GitHub\\BrickCollection\\src\\BrickCollection\\MainPage.xaml",
-              "RelativeDocumentMoniker": "src\\BrickCollection\\MainPage.xaml",
-              "ToolTip": "C:\\Users\\Laboratorio\\Documents\\GitHub\\BrickCollection\\src\\BrickCollection\\MainPage.xaml",
-              "RelativeToolTip": "src\\BrickCollection\\MainPage.xaml",
-              "ViewState": "AgIAABUAAAAAAAAAAAAAABIAAAAkAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-09-10T10:09:59.744Z",
+              "DocumentIndex": 0,
+              "Title": "App.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Laboratorio\\Documents\\GitHub\\BrickCollection\\src\\BrickCollection\\App.xaml.cs",
+              "RelativeDocumentMoniker": "src\\BrickCollection\\App.xaml.cs",
+              "ToolTip": "C:\\Users\\Laboratorio\\Documents\\GitHub\\BrickCollection\\src\\BrickCollection\\App.xaml.cs",
+              "RelativeToolTip": "src\\BrickCollection\\App.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-21T07:31:32.604Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
+              "Title": "CacheService.cs",
+              "DocumentMoniker": "C:\\Users\\Laboratorio\\Documents\\GitHub\\BrickCollection\\src\\BrickCollection\\Services\\CacheService.cs",
+              "RelativeDocumentMoniker": "src\\BrickCollection\\Services\\CacheService.cs",
+              "ToolTip": "C:\\Users\\Laboratorio\\Documents\\GitHub\\BrickCollection\\src\\BrickCollection\\Services\\CacheService.cs",
+              "RelativeToolTip": "src\\BrickCollection\\Services\\CacheService.cs",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAkwDcAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-21T07:31:32.628Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "MainPage.xaml.cs",
               "DocumentMoniker": "C:\\Users\\Laboratorio\\Documents\\GitHub\\BrickCollection\\src\\BrickCollection\\MainPage.xaml.cs",
               "RelativeDocumentMoniker": "src\\BrickCollection\\MainPage.xaml.cs",
               "ToolTip": "C:\\Users\\Laboratorio\\Documents\\GitHub\\BrickCollection\\src\\BrickCollection\\MainPage.xaml.cs",
               "RelativeToolTip": "src\\BrickCollection\\MainPage.xaml.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAYwB4AAABiAAAAAAAAAA==",
+              "ViewState": "AgIAAEUAAAAAAAAAAAAgwFMAAAACAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-08T10:40:34.939Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-09-21T07:31:32.646Z"
             }
           ]
         }

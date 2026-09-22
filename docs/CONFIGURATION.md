@@ -31,7 +31,7 @@ This is a pragmatic approach for a single-user personal app in early development
 
 ### Rate Limits
 
-The Brickset API limits individual API keys to 100 calls/day, but **only calls to `getSets` count against this quota** — `login` and `getCollection` do not. The app fetches the full collection in a single `getSets` call (`pageSize:500`) rather than paginating, to keep usage minimal.
+The Brickset API limits individual API keys to 100 calls/day, but **only calls to `getSets` count against this quota** — `login` and `getCollection` do not. The app fetches the full collection in a single `getSets` call (`pageSize:500`) rather than paginating, to keep usage minimal, and caches results locally (SQLite) so the API is only called when the user explicitly taps "Refresh".
 
 ## Italiano
 
@@ -60,4 +60,4 @@ Questo è un approccio pragmatico per un'app personale mono-utente in fase inizi
 
 ### Limiti di Chiamate
 
-L'API Brickset limita le API key individuali a 100 chiamate/giorno, ma **solo le chiamate a `getSets` consumano questa quota** — `login` e `getCollection` no. L'app scarica l'intera collezione in un'unica chiamata `getSets` (`pageSize:500`) invece di paginare, per minimizzare il consumo.
+L'API Brickset limita le API key individuali a 100 chiamate/giorno, ma **solo le chiamate a `getSets` consumano questa quota** — `login` e `getCollection` no. L'app scarica l'intera collezione in un'unica chiamata `getSets` (`pageSize:500`) invece di paginare, per minimizzare il consumo, e mette in cache i risultati localmente (SQLite) così l'API viene chiamata solo quando l'utente tocca esplicitamente "Aggiorna".

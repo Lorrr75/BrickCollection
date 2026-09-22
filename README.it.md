@@ -52,6 +52,10 @@ Vedi [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) per dettagli sulla struttura d
 
 Vedi [docs/API_INTEGRATION.md](docs/API_INTEGRATION.md) per i dettagli emersi durante l'integrazione con l'API Brickset (endpoint usati, formato risposte, comportamento dei limiti di chiamata).
 
+## Risoluzione Problemi
+
+Vedi [docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md) per i problemi reali incontrati durante lo sviluppo (toolchain Android, conflitti libreria nativa SQLite, setup finestra MAUI) con causa e soluzione.
+
 ## Roadmap
 
 Lo sviluppo segue un approccio incrementale, passo dopo passo. Vedi [docs/ROADMAP.md](docs/ROADMAP.md) per lo stato di avanzamento attuale.

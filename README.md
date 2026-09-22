@@ -52,6 +52,10 @@ See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for details on the app structur
 
 See [docs/API_INTEGRATION.md](docs/API_INTEGRATION.md) for specifics learned while integrating the Brickset API (endpoints used, response shapes, rate limit behavior).
 
+## Troubleshooting
+
+See [docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md) for real issues hit during development (Android toolchain, SQLite native library conflicts, MAUI window setup) with root cause and fix.
+
 ## Roadmap
 
 Development follows an incremental, step-by-step approach. See [docs/ROADMAP.md](docs/ROADMAP.md) for current progress.

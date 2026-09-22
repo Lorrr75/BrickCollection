@@ -1,0 +1,31 @@
+<ContentPage x:Class="BrickCollection.Views.SetDetailPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title="Dettaglio Set">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+            <Image Source="{Binding Image.ImageURL}" 
+                   HeightRequest="220"
+                   Aspect="AspectFit"/>
+            <Label Text="{Binding Name}" FontSize="24" FontAttributes="Bold" />
+            <Label Text="{Binding Number}" FontSize="18" TextColor="Gray"/>
+            <BoxView HeightRequest="1" BackgroundColor="LightGray" Margin="0,10" />
+            <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,auto,auto,auto" RowSpacing="12">
+                <Label Text="Anno" Grid.Row="0" Grid.Column="0" FontAttributes="Bold"/>
+                <Label Text="{Binding Year}" Grid.Row="0" Grid.Column="1"/>
+
+                <Label Text="Tema" Grid.Row="1" Grid.Column="0" FontAttributes="Bold"/>
+                <Label Text="{Binding Theme}" Grid.Row="1" Grid.Column="1"/>
+
+                <Label Grid.Row="2" Grid.Column="0" Text="Sottotema" FontAttributes="Bold" />
+                <Label Grid.Row="2" Grid.Column="1" Text="{Binding Subtheme}" />
+
+                <Label Grid.Row="3" Grid.Column="0" Text="Pezzi" FontAttributes="Bold" />
+                <Label Grid.Row="3" Grid.Column="1" Text="{Binding Pieces}" />
+
+                <Label Grid.Row="4" Grid.Column="0" Text="Minifigure" FontAttributes="Bold" />
+                <Label Grid.Row="4" Grid.Column="1" Text="{Binding Minifigs}" />
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,39 +1,87 @@
 ﻿using BrickCollection.Models;
 using BrickCollection.Services;
-namespace BrickCollection;
+using BrickCollection.Views;
 
-public partial class MainPage : ContentPage
+
+namespace BrickCollection
 {
-	
-	public MainPage()
+	public partial class MainPage : ContentPage
 	{
-		InitializeComponent();
-        LoadCollectionAsync();
-	}
-
-	private async void LoadCollectionAsync()
-	{
-		var authService = new BricksetAuthService(new HttpClient());
-		var loginResult = await authService.LoginAsync(Secrets.BricksetApiKey,
-													   Secrets.BricksetUsername,
-													   Secrets.BricksetPassword);
-		if (!loginResult.Success)
+		private readonly CacheService _cacheService = new CacheService();
+        public MainPage()
 		{
-			System.Diagnostics.Debug.WriteLine($"[BrickCollection] Login FALLITO: {loginResult.ErrorMessage}");
-			return;
+			InitializeComponent();
+			InitializeAsync();
 		}
 
-		var setsResult = await authService.GetOwnedSetsAsync(Secrets.BricksetApiKey, loginResult.UserHash);
+		private async void InitializeAsync()		
+		{
+			var cachedSets = await _cacheService.GetCachedSetsAsync();
 
-		if (setsResult.Success)
+			if (cachedSets.Count > 0)
+            {
+                DisplaySets(cachedSets);
+				StatusLabel.Text = $"{cachedSets.Count} set (da cache locale)";
+            }
+            else
+            {
+				// Prima esecuzione: nessuna cache, scarica dall'API
+                await RefreshFromApiAsync();
+            }
+        }
+
+		private async void OnRefreshClicked(object sender, EventArgs e)
 		{
-			SetsCollectionView.ItemsSource = setsResult.Sets;
-			StatusLabel.Text = $"{setsResult.Sets.Count} set caricati (totale API: {setsResult.TotalMatches})";
-		}
-		else
+			await RefreshFromApiAsync();
+        }
+
+		private async Task RefreshFromApiAsync()
 		{
-			System.Diagnostics.Debug.WriteLine($"[BrickCollection] Errore nel recupero dei set: {setsResult.ErrorMessage}");
+			StatusLabel.Text = "Aggiornamento in corso...";
+
+			var authService = new BricksetAuthService(new HttpClient());
+			var loginResult = await authService.LoginAsync(
+			Secrets.BricksetApiKey,
+			Secrets.BricksetUsername,
+			Secrets.BricksetPassword);
+
+			if (!loginResult.Success)
+			{
+				StatusLabel.Text = $"Errore login: {loginResult.ErrorMessage}";
+				return;
+			}
+
+			var setsResult = await authService.GetOwnedSetsAsync(Secrets.BricksetApiKey, loginResult.UserHash!);
+
+			if (setsResult.Success)
+			{
+				await _cacheService.SaveSetsAsync(setsResult.Sets);
+				DisplaySets(setsResult.Sets);
+				StatusLabel.Text = $"{setsResult.Sets.Count} set (aggiornato ora, totale API: {setsResult.TotalMatches})";
+            }
+			else
+			{
+				StatusLabel.Text = $"Errore fetch: {setsResult.ErrorMessage}";
+			}
 		}
-	}
+
+		private void DisplaySets(List<BricksetSet> sets)
+		{
+			SetsCollectionView.ItemsSource = sets;
+
+			int totalPieces = sets.Sum(s => s.Pieces ?? 0);
+			int totalMinifigs = sets.Sum(s => s.Minifigs ?? 0);
+            StatsLabel.Text = $"Totale pezzi: {totalPieces:N0}  ·  Totale minifigure: {totalMinifigs:N0}";
+        }
+
+		private async void OnSetSelected(object sender, SelectionChangedEventArgs e)
+		{
+			if (e.CurrentSelection.FirstOrDefault() is BricksetSet selectedSet)
+            {
+                await Navigation.PushAsync(new SetDetailPage(selectedSet));
+                SetsCollectionView.SelectedItem = null; // Deseleziona l'elemento dopo la navigazione
+            }
+		}
+    }
+
 }
-

@@ -6,5 +6,6 @@
     <ActiveDebugProfile>TestSemplice (16.0 Android - API 36)</ActiveDebugProfile>
     <SelectedPlatformGroup>Emulator</SelectedPlatformGroup>
     <DefaultDevice>TestSemplice</DefaultDevice>
+    <SelectedDevice>Emulatore Android</SelectedDevice>
   </PropertyGroup>
 </Project>
