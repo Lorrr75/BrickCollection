@@ -1,5 +1,7 @@
 <Solution>
   <Folder Name="/src/">
-    <Project Path="src/BrickCollection/BrickCollection.csproj" />
+    <Project Path="src/BrickCollection/BrickCollection.csproj">
+      <Deploy Solution="Debug|*" />
+    </Project>
   </Folder>
 </Solution>

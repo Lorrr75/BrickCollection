@@ -20,6 +20,15 @@ namespace BrickCollection.Models
         public int? Pieces { get; set; }
         public int? Minifigs { get; set; }
         public BricksetImage? Image { get; set; }
+        public BricksetCollectionInfo? Collection { get; set; }
+    }
+
+    public class BricksetCollectionInfo
+    {
+        public bool? Owned { get; set; }
+        public bool? Wanted { get; set; }
+        public int QtyOwned { get; set; }
+        public int QtyWanted { get; set; }
     }
 
     internal class GetSetsRawResponse

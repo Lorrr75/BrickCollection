@@ -16,6 +16,7 @@ Un'app personale per la gestione della propria collezione LEGO® su Android, svi
 - Accesso tramite account Brickset
 - Sfoglia i set posseduti e desiderati
 - Visualizza informazioni dettagliate sui set (pezzi, minifigure, anno, tema, prezzo di listino)
+- Aggiungi o rimuovi un set dalla tua lista desideri Brickset direttamente dalla pagina di dettaglio
 - Statistiche sulla collezione (totale set, totale pezzi, spesa per tema/anno)
 - Cache locale (SQLite) per un uso efficiente offline e ridurre le chiamate API
 - Interfaccia multilingua: Inglese, Italiano, Spagnolo, Francese, Tedesco

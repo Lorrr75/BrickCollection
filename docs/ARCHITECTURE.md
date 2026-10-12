@@ -28,12 +28,12 @@ BrickCollection/
 ├── src/
 │   └── BrickCollection/
 │       ├── Models/
-│       │   └── BricksetModels.cs      # BricksetSet, BricksetImage, raw response DTOs
+│       │   └── BricksetModels.cs      # BricksetSet, BricksetImage, BricksetCollectionInfo, raw response DTOs
 │       ├── Services/
-│       │   ├── BricksetAuthService.cs # LoginAsync, GetOwnedSetsAsync
-│       │   └── CacheService.cs        # SQLite persistence (CachedSet, SaveSetsAsync, GetCachedSetsAsync)
+│       │   ├── BricksetAuthService.cs # LoginAsync, GetOwnedSetsAsync, SetWantedAsync
+│       │   └── CacheService.cs        # SQLite persistence (CachedSet, SaveSetsAsync, GetCachedSetsAsync, UpdateWantedAsync)
 │       ├── Views/
-│       │   └── SetDetailPage.xaml(.cs)
+│       │   └── SetDetailPage.xaml(.cs) # Detail view + wishlist switch (write-through to Brickset and cache)
 │       ├── MainPage.xaml(.cs)         # Collection list (CollectionView), cache-first load, refresh toolbar button
 │       ├── App.xaml.cs                # SQLitePCL.Batteries_V2.Init(); CreateWindow(...) override
 │       ├── Secrets.cs                 # git-ignored: API key + credentials
@@ -43,7 +43,7 @@ BrickCollection/
 └── .github/
 ```
 
-Planned additions: write operations back to Brickset (Step 6), charts/advanced stats (Step 7).
+Planned additions: charts/advanced stats (Step 7), toggling the `owned` flag, localization (5 languages).
 
 ### Data Flow (current)
 
@@ -51,6 +51,7 @@ Planned additions: write operations back to Brickset (Step 6), charts/advanced s
 2. **Cache-first load**: `MainPage.InitializeAsync()` checks `CacheService.GetCachedSetsAsync()` first; if the cache has data, it's displayed immediately with no API call
 3. **Refresh (manual)**: a toolbar button triggers `RefreshFromApiAsync()` → `BricksetAuthService.LoginAsync()` → `GetOwnedSetsAsync()` → `CacheService.SaveSetsAsync()` (overwrites the cache) → re-display
 4. **Detail navigation**: tapping a list item calls `Navigation.PushAsync(new SetDetailPage(selectedSet))`, passing the already-fetched `BricksetSet` object directly (no extra API/DB call needed)
+5. **Write (wishlist switch)**: toggling the switch on `SetDetailPage` logs in again (`login` is not quota-limited), calls `SetWantedAsync()` → Brickset `setCollection`; only on success it updates the in-memory `BricksetSet.Collection.Wanted` and the SQLite row (`CacheService.UpdateWantedAsync()`), so the UI, the cache and the server stay consistent
 
 ### Key Design Decisions
 
@@ -59,6 +60,8 @@ Planned additions: write operations back to Brickset (Step 6), charts/advanced s
 - **Cache-first, manual refresh only**: given the API rate limit (100 calls/day for `getSets`), the app loads from local SQLite cache on every startup and only calls the API when the user explicitly taps "Refresh" — never automatically on launch
 - **Secrets via git-ignored `Secrets.cs`**: simpler than config-file parsing for a single-user personal app in early development; see `docs/CONFIGURATION.md` for the reasoning and future refactor plan
 - **`SQLitePCLRaw.bundle_green` only, no extra native package references**: adding direct references to `SQLitePCLRaw.lib.e_sqlite3*` packages alongside the bundle causes native library conflicts on Android — see `docs/TROUBLESHOOTING.md`
+- **Write-through, server first**: a write goes to Brickset first and the local state (memory + cache) is updated only if the server confirms, so a failed call never leaves the app showing a state the server doesn't have
+- **Each page authenticates on demand**: pages call `login` themselves instead of sharing a stored user hash; acceptable because `login` doesn't consume the daily quota, but a shared session/DI service is a candidate refactor if more write operations are added
 
 ---
 
@@ -86,12 +89,12 @@ BrickCollection/
 ├── src/
 │   └── BrickCollection/
 │       ├── Models/
-│       │   └── BricksetModels.cs      # BricksetSet, BricksetImage, DTO risposte grezze
+│       │   └── BricksetModels.cs      # BricksetSet, BricksetImage, BricksetCollectionInfo, DTO risposte grezze
 │       ├── Services/
-│       │   ├── BricksetAuthService.cs # LoginAsync, GetOwnedSetsAsync
-│       │   └── CacheService.cs        # Persistenza SQLite (CachedSet, SaveSetsAsync, GetCachedSetsAsync)
+│       │   ├── BricksetAuthService.cs # LoginAsync, GetOwnedSetsAsync, SetWantedAsync
+│       │   └── CacheService.cs        # Persistenza SQLite (CachedSet, SaveSetsAsync, GetCachedSetsAsync, UpdateWantedAsync)
 │       ├── Views/
-│       │   └── SetDetailPage.xaml(.cs)
+│       │   └── SetDetailPage.xaml(.cs) # Dettaglio + interruttore lista desideri (write-through su Brickset e cache)
 │       ├── MainPage.xaml(.cs)         # Lista collezione (CollectionView), caricamento cache-first, pulsante refresh in toolbar
 │       ├── App.xaml.cs                # SQLitePCL.Batteries_V2.Init(); override CreateWindow(...)
 │       ├── Secrets.cs                 # escluso da git: API key + credenziali
@@ -101,7 +104,7 @@ BrickCollection/
 └── .github/
 ```
 
-Aggiunte pianificate: operazioni di scrittura verso Brickset (Step 6), grafici/statistiche avanzate (Step 7).
+Aggiunte pianificate: grafici/statistiche avanzate (Step 7), alternanza del flag `owned`, localizzazione (5 lingue).
 
 ### Flusso Dati (attuale)
 
@@ -109,6 +112,7 @@ Aggiunte pianificate: operazioni di scrittura verso Brickset (Step 6), grafici/s
 2. **Caricamento cache-first**: `MainPage.InitializeAsync()` controlla prima `CacheService.GetCachedSetsAsync()`; se la cache ha dati, vengono mostrati immediatamente senza chiamata API
 3. **Refresh (manuale)**: un pulsante in toolbar attiva `RefreshFromApiAsync()` → `BricksetAuthService.LoginAsync()` → `GetOwnedSetsAsync()` → `CacheService.SaveSetsAsync()` (sovrascrive la cache) → nuova visualizzazione
 4. **Navigazione dettaglio**: toccare un elemento della lista chiama `Navigation.PushAsync(new SetDetailPage(selectedSet))`, passando direttamente l'oggetto `BricksetSet` già scaricato (nessuna chiamata API/DB aggiuntiva necessaria)
+5. **Scrittura (interruttore lista desideri)**: azionare l'interruttore in `SetDetailPage` rifà il login (`login` non è soggetto a quota), chiama `SetWantedAsync()` → `setCollection` di Brickset; solo in caso di successo aggiorna l'oggetto in memoria `BricksetSet.Collection.Wanted` e la riga SQLite (`CacheService.UpdateWantedAsync()`), così UI, cache e server restano coerenti
 
 ### Decisioni di Design Chiave
 
@@ -117,3 +121,5 @@ Aggiunte pianificate: operazioni di scrittura verso Brickset (Step 6), grafici/s
 - **Cache-first, refresh solo manuale**: dato il limite di chiamate API (100/giorno per `getSets`), l'app carica dalla cache SQLite locale a ogni avvio e chiama l'API solo quando l'utente tocca esplicitamente "Aggiorna" — mai automaticamente all'avvio
 - **Segreti tramite `Secrets.cs` escluso da git**: più semplice del parsing di file di configurazione per un'app personale mono-utente in fase iniziale di sviluppo; vedi `docs/CONFIGURATION.md` per il ragionamento e il piano di refactor futuro
 - **Solo `SQLitePCLRaw.bundle_green`, nessun riferimento nativo extra**: aggiungere riferimenti diretti ai pacchetti `SQLitePCLRaw.lib.e_sqlite3*` insieme al bundle causa conflitti tra librerie native su Android — vedi `docs/TROUBLESHOOTING.md`
+- **Write-through, prima il server**: una scrittura va prima su Brickset e lo stato locale (memoria + cache) viene aggiornato solo se il server conferma, così una chiamata fallita non lascia mai l'app a mostrare uno stato che il server non ha
+- **Ogni pagina si autentica quando serve**: le pagine chiamano `login` da sole invece di condividere uno user hash salvato; accettabile perché `login` non consuma la quota giornaliera, ma un servizio di sessione condiviso/DI è un candidato al refactor se si aggiungono altre operazioni di scrittura

@@ -55,6 +55,34 @@ protected override Window CreateWindow(IActivationState? activationState)
 }
 ```
 
+### `setCollection` returns normally but nothing changes on Brickset
+
+**Symptom**: toggling the wishlist switch showed no error, but the set did not appear on the Brickset wishlist.
+
+**Cause**: the `params` JSON was built with numeric values (`{"want":1}`). The official `setCollection` examples pass the values as strings (`{"own":"1","qtyOwned":"6"}`).
+
+**Fix**: send string values: `JsonSerializer.Serialize(new { want = wanted ? "1" : "0" })`. After this change the update appeared on Brickset.
+
+### Wishlist switch shows the old state after restarting the app
+
+**Symptom**: switch turned on, app restarted, switch off again.
+
+**Cause**: the switch wrote only to Brickset. The list is loaded from the SQLite cache at startup, and the cache row still held the previous `Wanted` value (the `CachedSet` table also did not store `Wanted`/`QtyWanted` at first).
+
+**Fix**: store `Wanted`/`QtyWanted` in `CachedSet`, and after a successful server write also update the in-memory object and the cache row (`CacheService.UpdateWantedAsync`). Rows cached before the columns existed read as `false` until the next manual refresh.
+
+### Testing persistence on the emulator: closing the emulator is not a cold restart
+
+**Symptom**: after closing and reopening the emulator, the app reappeared exactly where it was left, so the persistence test seemed to pass without proving anything.
+
+**Cause**: the emulator uses Quick Boot snapshots (`Loading snapshot 'default_boot'` in the emulator log). Closing the emulator saves the whole memory state, and the app process resumes from it, so values still in RAM look "persisted".
+
+**Fix**: kill only the app process, then reopen it from the launcher:
+```
+adb shell am force-stop com.companyname.brickcollection
+```
+A valid test shows the status label "(da cache locale)" after reopening, proving the list came from SQLite.
+
 ## Italiano
 
 Problemi reali incontrati durante lo sviluppo, con causa e soluzione, tenuti qui per non doverli ridebuggare in futuro.
@@ -105,3 +133,31 @@ protected override Window CreateWindow(IActivationState? activationState)
     return new Window(new AppShell());
 }
 ```
+
+### `setCollection` risponde normalmente ma su Brickset non cambia nulla
+
+**Sintomo**: alternando l'interruttore della lista desideri non compariva alcun errore, ma il set non appariva nella lista desideri di Brickset.
+
+**Causa**: il JSON di `params` era costruito con valori numerici (`{"want":1}`). Gli esempi ufficiali di `setCollection` passano i valori come stringhe (`{"own":"1","qtyOwned":"6"}`).
+
+**Soluzione**: inviare valori stringa: `JsonSerializer.Serialize(new { want = wanted ? "1" : "0" })`. Dopo questa modifica l'aggiornamento è comparso su Brickset.
+
+### L'interruttore della lista desideri mostra lo stato vecchio dopo il riavvio dell'app
+
+**Sintomo**: interruttore acceso, app riavviata, interruttore di nuovo spento.
+
+**Causa**: l'interruttore scriveva solo su Brickset. All'avvio la lista viene caricata dalla cache SQLite, e la riga di cache conservava ancora il valore precedente di `Wanted` (inoltre la tabella `CachedSet` all'inizio non salvava `Wanted`/`QtyWanted`).
+
+**Soluzione**: salvare `Wanted`/`QtyWanted` in `CachedSet` e, dopo una scrittura riuscita sul server, aggiornare anche l'oggetto in memoria e la riga di cache (`CacheService.UpdateWantedAsync`). Le righe messe in cache prima che esistessero le colonne risultano `false` fino al prossimo refresh manuale.
+
+### Test di persistenza sull'emulatore: chiudere l'emulatore non è un riavvio a freddo
+
+**Sintomo**: dopo aver chiuso e riaperto l'emulatore, l'app riappariva esattamente dove era stata lasciata, quindi il test di persistenza sembrava superato senza dimostrare nulla.
+
+**Causa**: l'emulatore usa gli snapshot Quick Boot (`Loading snapshot 'default_boot'` nel log dell'emulatore). Chiudere l'emulatore salva l'intero stato della memoria e il processo dell'app riprende da lì, quindi i valori ancora in RAM sembrano "persistiti".
+
+**Soluzione**: terminare solo il processo dell'app e riaprirla dal launcher:
+```
+adb shell am force-stop com.companyname.brickcollection
+```
+Un test valido mostra la label di stato "(da cache locale)" dopo la riapertura, a prova che la lista arriva da SQLite.

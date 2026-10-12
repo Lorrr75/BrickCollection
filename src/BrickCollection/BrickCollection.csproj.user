@@ -8,4 +8,7 @@
     <DefaultDevice>TestSemplice</DefaultDevice>
     <SelectedDevice>Emulatore Android</SelectedDevice>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net10.0-android|AnyCPU'">
+    <DebuggerFlavor>ProjectDebugger</DebuggerFlavor>
+  </PropertyGroup>
 </Project>

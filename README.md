@@ -16,6 +16,7 @@ A personal LEGO® collection manager for Android, built with .NET MAUI, that con
 - Sign in with your Brickset account
 - Browse your owned and wanted sets
 - View detailed set information (pieces, minifigs, year, theme, retail price)
+- Add or remove a set from your Brickset wishlist directly from the set detail page
 - Collection statistics (total sets, total pieces, spend by theme/year)
 - Offline-friendly local caching (SQLite) to minimize API calls
 - Multi-language UI: English, Italian, Spanish, French, German

@@ -1,5 +1,5 @@
-﻿using System.Text.Json;
-using BrickCollection.Models;
+﻿using BrickCollection.Models;
+using System.Text.Json;
 
 namespace BrickCollection.Services
 {
@@ -17,6 +17,18 @@ namespace BrickCollection.Services
         public string? message { get; set; }
     }
 
+    public class BricksetWriteResult
+    {
+        public bool Success { get; init; }
+        public string? ErrorMessage { get; init; }
+    }
+
+    internal class GenericStatusResponse
+    {
+        public string? status { get; set; }
+        public string? message { get; set; }
+    }
+
     public class BricksetAuthService
     {
         public class BricksetSetsResult
@@ -27,8 +39,8 @@ namespace BrickCollection.Services
             public string? ErrorMessage { get; init; }
         }
         
-        private const string BaseUrl = "https://brickset.com/api/v3.asmx";
-        private readonly HttpClient _httpClient;
+        const string BaseUrl = "https://brickset.com/api/v3.asmx";
+        readonly HttpClient _httpClient;
 
         public BricksetAuthService(HttpClient httpClient)
         {
@@ -95,6 +107,31 @@ namespace BrickCollection.Services
             {
                 Success = false,
                ErrorMessage = result?.message ?? "Errore Sconosciuto"
+            };
+        }
+
+        public async Task<BricksetWriteResult> SetWantedAsync(string apiKey, string userHash, int setId, bool wanted)
+        {
+            var paramsJson = JsonSerializer.Serialize(new { want = wanted ? "1" : "0" });
+            var parameters = new Dictionary<string, string>
+            {
+                ["apiKey"] = apiKey,
+                ["userHash"] = userHash,
+                ["setID"] = setId.ToString(),
+                ["params"] = paramsJson
+            };
+            using var content = new FormUrlEncodedContent(parameters);
+            using var response = await _httpClient.PostAsync($"{BaseUrl}/setCollection", content);
+            response.EnsureSuccessStatusCode();
+
+            var json = await response.Content.ReadAsStringAsync();
+            var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+            var result = JsonSerializer.Deserialize<GenericStatusResponse>(json, options);
+
+            return new BricksetWriteResult
+            {
+                Success = result?.status == "success",
+                ErrorMessage = result?.message
             };
         }
     }

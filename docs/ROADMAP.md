@@ -18,10 +18,10 @@ Development follows a strict incremental approach: each step is built, tested, a
   Separate detail page (`SetDetailPage`, navigation on tap via `Navigation.PushAsync`); aggregate stats (total pieces, total minifigs) shown on the list page.
 - [x] **Step 5 — Local Caching**
   SQLite persistence (`CacheService`), cache-first load with a manual "Refresh" toolbar button. Verified with a cold app restart (list loads instantly from cache, no API call). See `docs/TROUBLESHOOTING.md` for two packaging/init bugs hit and resolved along the way.
-- [ ] **Step 6 — Write Operations**
-  Update owned/wanted status back to Brickset
+- [x] **Step 6 — Write Operations**
+  `setCollection` call from the detail page: a "Wishlist" switch writes the `wanted` flag back to Brickset, with write-through to the local SQLite cache and the in-memory object. Verified on the server side and after a real app process kill (`adb shell am force-stop`). Only `wanted` is implemented so far; toggling `owned` is not (it would remove the set from the owned list on next refresh, so it deserves its own design).
 - [ ] **Step 7 — Advanced Statistics**
-  Charts by theme/year, collection value trends
+  Charts by theme/year, collection value trends (planned library: `Microcharts.Maui`, SkiaSharp-based)
 
 ## Italiano
 
@@ -37,7 +37,7 @@ Lo sviluppo segue un approccio rigorosamente incrementale: ogni step viene costr
   Pagina dettaglio separata (`SetDetailPage`, navigazione al tap via `Navigation.PushAsync`); statistiche aggregate (totale pezzi, totale minifigure) mostrate nella pagina lista.
 - [x] **Step 5 — Cache Locale**
   Persistenza SQLite (`CacheService`), caricamento cache-first con pulsante "Aggiorna" manuale in toolbar. Verificato con riavvio a freddo dell'app (la lista carica istantaneamente da cache, nessuna chiamata API). Vedi `docs/TROUBLESHOOTING.md` per due bug di packaging/inizializzazione incontrati e risolti lungo il percorso.
-- [ ] **Step 6 — Operazioni di Scrittura**
-  Aggiornamento stato posseduto/desiderato verso Brickset
+- [x] **Step 6 — Operazioni di Scrittura**
+  Chiamata `setCollection` dalla pagina dettaglio: un interruttore "Lista desideri" scrive il flag `wanted` su Brickset, con write-through sulla cache SQLite locale e sull'oggetto in memoria. Verificato lato server e dopo un vero kill del processo dell'app (`adb shell am force-stop`). Per ora è implementato solo `wanted`; l'alternanza di `owned` no (toglierebbe il set dalla lista dei posseduti al refresh successivo, quindi merita un design a parte).
 - [ ] **Step 7 — Statistiche Avanzate**
-  Grafici per tema/anno, andamento valore collezione
+  Grafici per tema/anno, andamento valore collezione (libreria prevista: `Microcharts.Maui`, basata su SkiaSharp)

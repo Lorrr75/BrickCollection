@@ -26,6 +26,13 @@
                 <Label Grid.Row="4" Grid.Column="0" Text="Minifigure" FontAttributes="Bold" />
                 <Label Grid.Row="4" Grid.Column="1" Text="{Binding Minifigs}" />
             </Grid>
+            <BoxView HeightRequest="1" BackgroundColor="LightGray" Margin="0,10" />
+
+            <HorizontalStackLayout Spacing="10">
+                <Label Text="Nella lista desideri" VerticalOptions="Center" />
+                <Switch x:Name="WantedSwitch" Toggled="OnWantedToggled" />
+            </HorizontalStackLayout>
+            <Label x:Name="WriteStatusLabel" FontSize="12" TextColor="Gray" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

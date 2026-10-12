@@ -1,9 +1,10 @@
 ﻿using SQLite;
 using BrickCollection.Models;
+using Microsoft.VisualBasic;
 
 namespace BrickCollection.Services
 {
-    public class CacheSet
+    public class CachedSet
     {
         [PrimaryKey]
         public int SetID { get; set; }
@@ -16,6 +17,8 @@ namespace BrickCollection.Services
         public int? Minifigs { get; set; }
         public string? ThumbnailURL { get; set; }
         public string? ImageURL { get; set; }
+        public bool Wanted { get; set; }
+        public int QtyWanted { get; set; }
     }
 
     public class CacheService
@@ -27,18 +30,18 @@ namespace BrickCollection.Services
             if (_db is not null)
                 return _db;
             
-            var dbPath = Path.Combine(FileSystem.AppDataDirectory, "brickcollection.db");
+            var dbPath = Path.Combine(Microsoft.Maui.Storage.FileSystem.AppDataDirectory, "brickcollection.db");
             _db = new SQLiteAsyncConnection(dbPath);
-            await _db.CreateTableAsync<CacheSet>();
+            await _db.CreateTableAsync<CachedSet>();
             return _db;
         }
 
         public async Task SaveSetsAsync(IEnumerable<BricksetSet> sets)
         {
             var db = await GetConnectionAsync();
-            await db.DeleteAllAsync<CacheSet>();
+            await db.DeleteAllAsync<CachedSet>();
 
-            var cachedSets = sets.Select(s => new CacheSet
+            var cachedSets = sets.Select(s => new CachedSet
             {
                 SetID = s.SetID,
                 Number = s.Number,
@@ -49,7 +52,9 @@ namespace BrickCollection.Services
                 Pieces = s.Pieces,
                 Minifigs = s.Minifigs,
                 ThumbnailURL = s.Image?.ThumbnailURL,
-                ImageURL = s.Image?.ImageURL
+                ImageURL = s.Image?.ImageURL,
+                Wanted = s.Collection?.Wanted ?? false,
+                QtyWanted = s.Collection?.QtyWanted ?? 0
             }).ToList();
 
             await   db.InsertAllAsync(cachedSets);
@@ -57,8 +62,8 @@ namespace BrickCollection.Services
 
         public async Task<List<BricksetSet>> GetCachedSetsAsync()
         {
-            var db = await GetConnectionAsync();   
-            var cachedSets = await db.Table<CacheSet>().ToListAsync();
+            var db = await GetConnectionAsync();
+            var cachedSets = await db.Table<CachedSet>().ToListAsync();
 
             return cachedSets.Select(c => new BricksetSet
             {
@@ -74,8 +79,25 @@ namespace BrickCollection.Services
                 {
                     ThumbnailURL = c.ThumbnailURL,
                     ImageURL = c.ImageURL
+                },
+                Collection = new BricksetCollectionInfo
+                {
+                    Owned = true, // per definizione: la cache contiene solo set posseduti
+                    Wanted = c.Wanted,
+                    QtyWanted = c.QtyWanted
                 }
             }).ToList();
+        }
+
+        public async Task UpdateWantedAsync(int setId, bool wanted)
+        {
+            var db = await GetConnectionAsync();
+            var row = await db.FindAsync<CachedSet>(setId);
+            if (row is null)
+                return;
+
+            row.Wanted = wanted;
+            await db.UpdateAsync(row);
         }
     }
 }

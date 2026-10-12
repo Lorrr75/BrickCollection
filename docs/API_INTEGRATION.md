@@ -22,6 +22,14 @@ Practical findings from integrating the [Brickset REST API v3](https://brickset.
 - Each set object includes `setID`, `number`, `name`, `year`, `theme`, `pieces`, `minifigs`, and a nested `image` object with `thumbnailURL`/`imageURL`
 - `pageSize:500` is enough to fetch an entire personal collection (tested with 27 sets) in a single call
 
+**`setCollection`** (POST, form-urlencoded)
+- Params: `apiKey`, `userHash`, `setID`, `params` (a JSON string, e.g. `{"want":"1"}`)
+- Supported keys inside `params` (per the official docs): `own`, `want`, `qtyOwned`, `qtyWanted`, `notes`, `rating`, `flag1`..`flag8`
+- Success: `{"status":"success"}`; errors use the usual `{"status":"error","message":"..."}`
+- **Gotcha**: the official examples pass the values as **strings** (`{"own":"1","qtyOwned":"6"}`). Our first attempt sent numbers (`{"want":1}`) and nothing changed on Brickset; switching to strings (`{"want":"1"}`) made the update work. Keep values as strings.
+- `own` and `want` are independent flags: a set can be both owned and on the wishlist at the same time
+- Like `login`, `setCollection` does not count against the `getSets` daily quota
+
 ### Rate limit behavior (important)
 
 The 100 calls/day limit applies **only to `getSets`**. `login` and the newer `getCollection` method (added Jan 2026) do not count against it. This means:
@@ -50,6 +58,14 @@ Riscontri pratici emersi integrando le [Brickset REST API v3](https://brickset.c
 - Successo: `{"status":"success","matches":<n>,"sets":[...]}`
 - Ogni oggetto set include `setID`, `number`, `name`, `year`, `theme`, `pieces`, `minifigs`, e un oggetto annidato `image` con `thumbnailURL`/`imageURL`
 - `pageSize:500` è sufficiente per scaricare un'intera collezione personale (testato con 27 set) in un'unica chiamata
+
+**`setCollection`** (POST, form-urlencoded)
+- Parametri: `apiKey`, `userHash`, `setID`, `params` (una stringa JSON, es. `{"want":"1"}`)
+- Chiavi supportate dentro `params` (secondo la documentazione ufficiale): `own`, `want`, `qtyOwned`, `qtyWanted`, `notes`, `rating`, `flag1`..`flag8`
+- Successo: `{"status":"success"}`; gli errori usano il solito `{"status":"error","message":"..."}`
+- **Attenzione**: gli esempi ufficiali passano i valori come **stringhe** (`{"own":"1","qtyOwned":"6"}`). Il nostro primo tentativo inviava numeri (`{"want":1}`) e su Brickset non cambiava nulla; passando alle stringhe (`{"want":"1"}`) l'aggiornamento ha funzionato. Mantieni i valori come stringhe.
+- `own` e `want` sono flag indipendenti: un set può essere contemporaneamente posseduto e nella lista desideri
+- Come `login`, `setCollection` non consuma la quota giornaliera di `getSets`
 
 ### Comportamento dei limiti di chiamata (importante)
 
